@@ -3,7 +3,7 @@ Lista de Afazeres:
 Tarefa A
 [x] Implementar o casamento exato de padrões com 2 algoritmos diferentes.
 [x] Criar exemplos de texto (que seriam os enigmas da biblioteca) e de padrões para teste.
-[ ] Criar interface para se entrar com o nome do arquivo de texto e com o padrão a ser buscado.
+[x] Criar interface para se entrar com o nome do arquivo de texto e com o padrão a ser buscado.
 [ ] Fazer um gráfico com duas curvas de tempo de execução: para cada um dos algoritmos escolhidos
 
 - Anotações:
