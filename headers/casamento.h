@@ -4,5 +4,9 @@
 
 #define MAXCHAR 256
 
-void forcaBruta(char *texto, int n, char *padrao, int m);
-void shiftAndExato(char *texto, int n, char *padrao, int m);
+typedef char string[1000];
+
+void forcaBruta(string texto, int n, string padrao, int m);
+void shiftAndExato(string texto, int n, string padrao, int m);
+
+void leituraArquivo(string texto);

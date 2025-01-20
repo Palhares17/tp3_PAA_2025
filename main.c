@@ -1,17 +1,20 @@
 #include "headers/casamento.h"
 
 int main() {
-    char texto[] = "AABRAACADABRAACAADABRA";
-    char padrao[] = "ACA";
+    string texto;
+    string padrao;
 
-    int n = strlen(texto);
-    int m = strlen(padrao);
+    leituraArquivo(texto);
+    printf("\nTexto lido:\n%s\n", texto);
 
-    printf("\nShift-And Exato:\n");
-    shiftAndExato(texto, n, padrao, m);
+    printf("\nDigite o nome do padrao: ");
+    scanf("%s", padrao);
 
     printf("\nForça Bruta:\n");
-    forcaBruta(texto, n, padrao, m);
+    forcaBruta(texto, strlen(texto), padrao, strlen(padrao));
+
+    printf("\nShift-And Exato:\n");
+    shiftAndExato(texto, strlen(texto), padrao, strlen(padrao));
 
     return 0;
 }
