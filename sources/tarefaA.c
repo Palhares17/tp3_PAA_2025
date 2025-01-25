@@ -14,7 +14,7 @@ int tarefaA() {
 
     int escolha;
     do {
-        printf("Escolha entre Shift-And Exato (1) e Força Bruta (2): ");
+        printf("Escolha entre Shift-And Exato (1) e Força Bruta (2) | Sair (3 ou qualquer número): ");
         scanf("%d", &escolha);
 
         if (escolha == 1) {
