@@ -17,7 +17,7 @@ Tarefa B: Programa com Cifra de Deslocamento
 
 - Implementar um número inteiro "x" como chave para realizar o deslocamento.
 
-[ ] Criar opções para:
+[x] Criar opções para:
 
 - Criptografar arquivos usando a chave.
 - Descriptografar arquivos usando a chave.

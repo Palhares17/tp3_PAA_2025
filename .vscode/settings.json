@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "casamento.h": "c",
-    "cifra.h": "c"
+    "cifra.h": "c",
+    "includes.h": "c",
+    "stdio.h": "c"
   }
 }

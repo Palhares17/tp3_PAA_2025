@@ -4,13 +4,15 @@ void criptografar(int chave, char *texto) {
     char letra;
 
     for (int i = 0; texto[i] != '\0'; i++) {
-        letra = texto[i];
-        if (letra >= 'a' && letra <= 'z') {
-            letra = letra + chave;
-            if (letra > 'z') {
-                letra = letra - 'z' + 'a' - 1;
+        if (isalpha(texto[i])) {
+            letra = texto[i];
+            if (letra >= 'a' && letra <= 'z') {
+                letra = letra + chave;
+                if (letra > 'z') {
+                    letra = letra - 'z' + 'a' - 1;
+                }
+                texto[i] = letra;
             }
-            texto[i] = letra;
         }
     }
 
@@ -24,13 +26,15 @@ void descriptografar(int chave, char *texto) {
     lerCifra(texto);
 
     for (int i = 0; texto[i] != '\0'; i++) {
-        letra = texto[i];
-        if (letra >= 'a' && letra <= 'z') {
-            letra = letra - chave;
-            if (letra < 'a') {
-                letra = letra + 'z' - 'a' + 1;
+        if (isalpha(texto[i])) {
+            letra = texto[i];
+            if (letra >= 'a' && letra <= 'z') {
+                letra = letra - chave;
+                if (letra < 'a') {
+                    letra = letra + 'z' - 'a' + 1;
+                }
+                texto[i] = letra;
             }
-            texto[i] = letra;
         }
     }
 
@@ -43,7 +47,7 @@ void escreverCifra(char *texto, char *diretorio) {
     char nomeArq[40];
     char caminhoArq[400];
 
-    printf("Escolha um arquivo de escrita: ");
+    printf("\nCrie um novo arquivo de escrita: ");
     scanf("%s", nomeArq);
 
     // Concatena o caminho do diretório, nome do arquivo e extensão
@@ -102,4 +106,55 @@ void lerCifra(char *texto) {
     printf("\nTexto lido:\n%s\n", texto);
 
     fclose(arq);
+}
+
+/*----------- Frequência -----------*/
+double frequencias[26] = {14.63, 1.04, 3.88, 4.99, 12.57, 1.02, 1.30, 1.28, 6.18, 0.40, 0.02, 2.78, 4.74, 5.05, 10.73, 2.52, 1.20, 6.53, 7.81, 4.34, 4.63, 1.67, 0.01, 0.21, 0.01, 0.47};
+
+void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
+    int total = 0;
+    int contadores[26] = {0};
+
+    // Conta as ocorrências de cada letra
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (isalpha(texto[i])) {
+            char letra = tolower(texto[i]);
+            contadores[letra - 'a']++;
+            total++;
+        }
+    }
+
+    // Calcula as frequências em porcentagem
+    for (int i = 0; i < 26; i++) {
+        if (total > 0) {
+            frequenciasCalculadas[i] = (contadores[i] / (double)total) * 100.0;
+            printf("Frequencia da letra %c: %.2f\n", i + 'a', frequenciasCalculadas[i]);
+        } else {
+            frequenciasCalculadas[i] = 0.0;  // Evita divisão por zero
+        }
+    }
+}
+
+int adivinharChave(double *frequenciasTexto) {
+    double menorDiferenca = 1e9;  // Inicializa com um valor grande
+    int chaveAdivinhada = 0;
+
+    for (int k = 0; k < 26; k++) {
+        double diferencaTotal = 0.0;
+
+        for (int i = 0; i < 26; i++) {
+            // Calcula a posição deslocada na tabela de frequências
+            int posicaoDeslocada = (i + k) % 26;
+            // Soma a diferença absoluta entre frequências
+            diferencaTotal += fabs(frequenciasTexto[i] - frequencias[posicaoDeslocada]);
+        }
+
+        // Atualiza se encontrar uma chave com menor diferença
+        if (diferencaTotal < menorDiferenca) {
+            menorDiferenca = diferencaTotal;
+            chaveAdivinhada = k;
+        }
+    }
+
+    return chaveAdivinhada;
 }
