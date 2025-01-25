@@ -1,44 +1,38 @@
 #include "../headers/cifra.h"
 
 void criptografar(int chave, char *texto) {
-    char letra;
-
     for (int i = 0; texto[i] != '\0'; i++) {
         if (isalpha(texto[i])) {
-            letra = texto[i];
-            if (letra >= 'a' && letra <= 'z') {
-                letra = letra + chave;
-                if (letra > 'z') {
-                    letra = letra - 'z' + 'a' - 1;
-                }
-                texto[i] = letra;
+            char letra = texto[i];
+            if (islower(letra)) {
+                letra = ((letra - 'a' + chave) % 26) + 'a';
+            } else if (isupper(letra)) {
+                letra = ((letra - 'A' + chave) % 26) + 'A';
             }
+            texto[i] = letra;
         }
     }
 
-    printf("\n\nTexto criptografado\n\n");
+    printf("\n\nTexto criptografado:\n%s\n\n", texto);
     escreverCifra(texto, "./cifras_criptografadas");
 }
 
 void descriptografar(int chave, char *texto) {
-    char letra;
-
     lerCifra(texto);
 
     for (int i = 0; texto[i] != '\0'; i++) {
         if (isalpha(texto[i])) {
-            letra = texto[i];
-            if (letra >= 'a' && letra <= 'z') {
-                letra = letra - chave;
-                if (letra < 'a') {
-                    letra = letra + 'z' - 'a' + 1;
-                }
-                texto[i] = letra;
+            char letra = texto[i];
+            if (islower(letra)) {
+                letra = ((letra - 'a' - chave + 26) % 26) + 'a';
+            } else if (isupper(letra)) {
+                letra = ((letra - 'A' - chave + 26) % 26) + 'A';
             }
+            texto[i] = letra;
         }
     }
 
-    printf("\n\nTexto descriptografado:\n%s\n", texto);
+    printf("\n\nTexto descriptografado:\n%s\n\n", texto);
     escreverCifra(texto, "./cifras_descriptografadas");
 }
 
@@ -115,41 +109,35 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
     int total = 0;
     int contadores[26] = {0};
 
-    // Conta as ocorrências de cada letra
+    // Contar a frequência de cada letra
     for (int i = 0; texto[i] != '\0'; i++) {
         if (isalpha(texto[i])) {
-            char letra = tolower(texto[i]);
-            contadores[letra - 'a']++;
+            contadores[tolower(texto[i]) - 'a']++;
             total++;
         }
     }
 
-    // Calcula as frequências em porcentagem
+    // Calcular porcentagem de cada letra
     for (int i = 0; i < 26; i++) {
-        if (total > 0) {
-            frequenciasCalculadas[i] = (contadores[i] / (double)total) * 100.0;
-            printf("Frequencia da letra %c: %.2f\n", i + 'a', frequenciasCalculadas[i]);
-        } else {
-            frequenciasCalculadas[i] = 0.0;  // Evita divisão por zero
-        }
+        frequenciasCalculadas[i] = total > 0 ? (contadores[i] / (double)total) * 100.0 : 0.0;
     }
 }
 
 int adivinharChave(double *frequenciasTexto) {
-    double menorDiferenca = 1e9;  // Inicializa com um valor grande
+    double menorDiferenca = 1e9;  // Inicializar com um valor muito alto
     int chaveAdivinhada = 0;
 
+    // Testar todas as possíveis chaves (0 a 25)
     for (int k = 0; k < 26; k++) {
         double diferencaTotal = 0.0;
 
+        // Comparar a frequência deslocada com a tabela de frequências
         for (int i = 0; i < 26; i++) {
-            // Calcula a posição deslocada na tabela de frequências
             int posicaoDeslocada = (i + k) % 26;
-            // Soma a diferença absoluta entre frequências
             diferencaTotal += fabs(frequenciasTexto[i] - frequencias[posicaoDeslocada]);
         }
 
-        // Atualiza se encontrar uma chave com menor diferença
+        // Atualizar a menor diferença e a chave
         if (diferencaTotal < menorDiferenca) {
             menorDiferenca = diferencaTotal;
             chaveAdivinhada = k;
