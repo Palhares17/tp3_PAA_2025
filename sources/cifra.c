@@ -21,6 +21,8 @@ void criptografar(int chave, char *texto) {
 void descriptografar(int chave, char *texto) {
     char letra;
 
+    lerCifra(texto);
+
     for (int i = 0; texto[i] != '\0'; i++) {
         letra = texto[i];
         if (letra >= 'a' && letra <= 'z') {
@@ -62,7 +64,7 @@ void lerCifra(char *texto) {
     FILE *arq;
     char nomeArq[40];
     char palavra[40];
-    char caminhoArq[80] = "./arquivos/";
+    char caminhoArq[80] = "./cifras_criptografadas/";
     int marcaPosicao = 0;
 
     printf("Escolha um arquivo de leitura: ");
@@ -96,6 +98,8 @@ void lerCifra(char *texto) {
     } else {
         texto[0] = '\0';  // Caso o arquivo esteja vazio
     }
+
+    printf("\nTexto lido:\n%s\n", texto);
 
     fclose(arq);
 }

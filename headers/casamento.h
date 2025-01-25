@@ -6,5 +6,3 @@ typedef char string[1000];
 
 void forcaBruta(string texto, int n, string padrao, int m);
 void shiftAndExato(string texto, int n, string padrao, int m);
-
-void leituraArquivo(char *texto);

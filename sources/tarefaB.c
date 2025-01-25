@@ -3,7 +3,7 @@
 int tarefaB() {
     char texto[1000];
 
-    lerCifra(texto);
+	leituraArquivo(texto);
     printf("\ntexto lido: \n%s", texto);
 	printf("\n\n");
 
