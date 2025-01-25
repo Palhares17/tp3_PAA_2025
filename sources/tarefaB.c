@@ -3,12 +3,12 @@
 void executarCriptografia(int chave, char *texto, double *frequencia) {
     criptografar(chave, texto);
     printf("\nTexto criptografado: \n%s\n", texto);
-
+    int chaveAdivinhada = adivinharChave(frequencia);
+	
     descriptografar(chave, texto);
     printf("\nTexto descriptografado: \n%s\n", texto);
 
     if (frequencia) {
-        int chaveAdivinhada = adivinharChave(frequencia);
         printf("\nA chave chutada é: %d\nA chave verdadeira é: %d\n", chaveAdivinhada, chave);
     }
 }

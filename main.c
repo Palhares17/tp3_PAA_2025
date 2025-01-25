@@ -4,7 +4,7 @@ int main() {
     char escolha;
 
     while (1) {
-        printf("Qual tarefa deseja fazer A ou B para Sair (S): ");
+        printf("Qual tarefa deseja fazer A ou B para Sair (S):");
         scanf("%c", &escolha);
 
         if (escolha == 'a' || escolha == 'A') {
