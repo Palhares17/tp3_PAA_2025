@@ -111,6 +111,7 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
 
     // Contar a frequência de cada letra
     for (int i = 0; texto[i] != '\0'; i++) {
+        printf("%c ", texto[i]);
         if (isalpha(texto[i])) {
             contadores[tolower(texto[i]) - 'a']++;
             total++;
@@ -119,7 +120,8 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
 
     // Calcular porcentagem de cada letra
     for (int i = 0; i < 26; i++) {
-        frequenciasCalculadas[i] = total > 0 ? (contadores[i] / (double)total) * 100.0 : 0.0;
+        frequenciasCalculadas[i] = total >= 0 ? (contadores[i] / (double)total) * 100.0 : 0.0;
+        if (frequenciasCalculadas[i] > 0.0) printf("\n%c: %lf\n", 'a' + i, frequenciasCalculadas[i]);
     }
 }
 
@@ -134,7 +136,7 @@ int adivinharChave(double *frequenciasTexto) {
         // Comparar a frequência deslocada com a tabela de frequências
         for (int i = 0; i < 26; i++) {
             int posicaoDeslocada = (i + k) % 26;
-            diferencaTotal += fabs(frequenciasTexto[i] - frequencias[posicaoDeslocada]);
+            diferencaTotal += abs(frequenciasTexto[i] - frequencias[posicaoDeslocada]);
         }
 
         // Atualizar a menor diferença e a chave

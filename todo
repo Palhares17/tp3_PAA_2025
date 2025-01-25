@@ -22,8 +22,8 @@ Tarefa B: Programa com Cifra de Deslocamento
 - Criptografar arquivos usando a chave.
 - Descriptografar arquivos usando a chave.
 
-[ ] Exibir o arquivo resultante na tela e salvá-lo no disco.
-[ ] Implementar opção de usar uma "chave" aleatória:
+[x] Exibir o arquivo resultante na tela e salvá-lo no disco.
+[x] Implementar opção de usar uma "chave" aleatória:
 
 - Mostrar uma tabela com as frequências percentuais de cada caractere no arquivo.
 
