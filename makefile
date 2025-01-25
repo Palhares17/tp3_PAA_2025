@@ -1,3 +1,3 @@
 all:
-	gcc main.c ./sources/casamento.c -o ./bin/exe
+	gcc main.c ./sources/tarefaA.c ./sources/tarefaB.c ./sources/casamento.c ./sources/cifra.c -o ./bin/exe
 	./bin/exe

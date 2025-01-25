@@ -13,7 +13,7 @@ Tarefa A
   - Mostrar na documentação claramente os tamanhos de padrões e textos utilizados nos testes, bem como o gráfico resultante.
 
 Tarefa B: Programa com Cifra de Deslocamento
-[ ] Criar um programa que use a cifra de deslocamento:
+[x] Criar um programa que use a cifra de deslocamento:
 
 - Implementar um número inteiro "x" como chave para realizar o deslocamento.
 
