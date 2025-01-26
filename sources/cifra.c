@@ -141,12 +141,13 @@ int adivinharChave(double *frequenciasTexto) {
 
         // Atualizar a menor diferença e a chave
         if (diferencaTotal >= maiorDiferenca) {
+            printf("Maior diferença: %lf\n", maiorDiferenca);
             maiorDiferenca = diferencaTotal;
             chaveAdivinhada = k;
         }
-		chaveAdivinhada = k;
-		printf("Chave: %d, Diferença: %lf\n", k, diferencaTotal);
     }
-	
+
+    printf("Chave adivinhada: %d\n", chaveAdivinhada);
+
     return chaveAdivinhada;
 }

@@ -4,7 +4,7 @@ void executarCriptografia(int chave, char *texto, double *frequencia) {
     criptografar(chave, texto);
     printf("\nTexto criptografado: \n%s\n", texto);
     int chaveAdivinhada = adivinharChave(frequencia);
-	
+
     descriptografar(chave, texto);
     printf("\nTexto descriptografado: \n%s\n", texto);
 
@@ -14,7 +14,7 @@ void executarCriptografia(int chave, char *texto, double *frequencia) {
 }
 
 int tarefaB() {
-    char texto[1000];
+    char texto[999999];
 
     // Leitura do texto do arquivo
     leituraArquivo(texto);
