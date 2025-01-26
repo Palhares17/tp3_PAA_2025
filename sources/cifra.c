@@ -126,7 +126,7 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
 }
 
 int adivinharChave(double *frequenciasTexto) {
-    double menorDiferenca = 1000;  // Inicializar com um valor muito alto
+    double maiorDiferenca = 0.0;  // Inicializar com um valor muito alto
     int chaveAdivinhada = 0;
 
     // Testar todas as possíveis chaves (0 a 25)
@@ -140,8 +140,8 @@ int adivinharChave(double *frequenciasTexto) {
         }
 
         // Atualizar a menor diferença e a chave
-        if (diferencaTotal <= menorDiferenca) {
-            menorDiferenca = diferencaTotal;
+        if (diferencaTotal >= maiorDiferenca) {
+            maiorDiferenca = diferencaTotal;
             chaveAdivinhada = k;
         }
 		chaveAdivinhada = k;
