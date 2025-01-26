@@ -10,6 +10,7 @@ void executarCriptografia(int chave, string texto, double *frequencia) {
         chaveAdivinhada = adivinharChave(frequencia);
     }
 
+	printf("\n========= Descriptografar =========\n");
     descriptografar(chave, texto);
 
     if (frequencia) {
