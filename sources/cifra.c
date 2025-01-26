@@ -13,7 +13,6 @@ void criptografar(int chave, char *texto) {
         }
     }
 
-    printf("\n\nTexto criptografado:\n%s\n\n", texto);
     escreverCifra(texto, "./cifras_criptografadas");
 }
 
@@ -32,11 +31,11 @@ void descriptografar(int chave, char *texto) {
         }
     }
 
-    printf("\n\nTexto descriptografado:\n%s\n\n", texto);
+    printf("\nTexto descriptografado: \n%s\n", texto);
     escreverCifra(texto, "./cifras_descriptografadas");
 }
 
-void escreverCifra(char *texto, char *diretorio) {
+void escreverCifra(string texto, char *diretorio) {
     FILE *arq;
     char nomeArq[40];
     char caminhoArq[400];
@@ -58,14 +57,14 @@ void escreverCifra(char *texto, char *diretorio) {
     fclose(arq);
 }
 
-void lerCifra(char *texto) {
+void lerCifra(string texto) {
     FILE *arq;
     char nomeArq[40];
     char palavra[40];
     char caminhoArq[80] = "./cifras_criptografadas/";
     int marcaPosicao = 0;
 
-    printf("Escolha um arquivo de leitura: ");
+    printf("Selecione um arquivo para ser lido: ");
     scanf("%s", nomeArq);
 
     strcat(nomeArq, ".txt");
@@ -111,7 +110,6 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
 
     // Contar a frequência de cada letra
     for (int i = 0; texto[i] != '\0'; i++) {
-        printf("%c ", texto[i]);
         if (isalpha(texto[i])) {
             contadores[tolower(texto[i]) - 'a']++;
             total++;
@@ -121,7 +119,6 @@ void calcularFrequencias(char *texto, double *frequenciasCalculadas) {
     // Calcular porcentagem de cada letra
     for (int i = 0; i < 26; i++) {
         frequenciasCalculadas[i] = total >= 0 ? (contadores[i] / (double)total) * 100.0 : 0.0;
-        if (frequenciasCalculadas[i] > 0.0) printf("\n%c: %lf\n", 'a' + i, frequenciasCalculadas[i]);
     }
 }
 
@@ -141,13 +138,10 @@ int adivinharChave(double *frequenciasTexto) {
 
         // Atualizar a menor diferença e a chave
         if (diferencaTotal >= maiorDiferenca) {
-            printf("Maior diferença: %lf\n", maiorDiferenca);
             maiorDiferenca = diferencaTotal;
             chaveAdivinhada = k;
         }
     }
-
-    printf("Chave adivinhada: %d\n", chaveAdivinhada);
 
     return chaveAdivinhada;
 }

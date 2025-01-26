@@ -5,4 +5,6 @@
 #include <string.h>
 #include <time.h>
 
-void leituraArquivo(char *texto);
+typedef char string[999999];
+
+void leituraArquivo(string texto);

@@ -1,12 +1,16 @@
 #include "../headers/cifra.h"
 
-void executarCriptografia(int chave, char *texto, double *frequencia) {
+void executarCriptografia(int chave, string texto, double *frequencia) {
+    int chaveAdivinhada;
     criptografar(chave, texto);
-    printf("\nTexto criptografado: \n%s\n", texto);
-    int chaveAdivinhada = adivinharChave(frequencia);
+
+    printf("\nTexto criptografado: \n%s\n\n", texto);
+
+    if (frequencia) {
+        chaveAdivinhada = adivinharChave(frequencia);
+    }
 
     descriptografar(chave, texto);
-    printf("\nTexto descriptografado: \n%s\n", texto);
 
     if (frequencia) {
         printf("\nA chave chutada é: %d\nA chave verdadeira é: %d\n", chaveAdivinhada, chave);
@@ -14,7 +18,7 @@ void executarCriptografia(int chave, char *texto, double *frequencia) {
 }
 
 int tarefaB() {
-    char texto[999999];
+    string texto;
 
     // Leitura do texto do arquivo
     leituraArquivo(texto);
