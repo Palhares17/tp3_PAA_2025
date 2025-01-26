@@ -94,7 +94,7 @@ void lerCifra(char *texto) {
     if (marcaPosicao > 0) {
         texto[marcaPosicao - 1] = '\0';
     } else {
-        texto[0] = '\0';  // Caso o arquivo esteja vazio
+        texto[0] = '\0';
     }
 
     printf("\nTexto lido:\n%s\n", texto);
