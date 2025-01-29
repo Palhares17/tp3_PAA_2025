@@ -13,7 +13,7 @@ int tarefaA() {
     scanf("%s", padrao);
 
     int escolha;
-    do {
+    while (1) {
         printf("Escolha entre Shift-And Exato (1) e Força Bruta (2) | Sair (3 ou qualquer número): ");
         scanf("%d", &escolha);
 
@@ -37,6 +37,10 @@ int tarefaA() {
 
             printf("Tempo de execucao: %lf\n\n", ((double)tempo) / ((CLOCKS_PER_SEC / 1000)));
         }
-    } while (escolha == 1 || escolha == 2);
+
+        else {
+            break;
+        }
+    }
     return 0;
 }
